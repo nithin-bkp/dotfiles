@@ -94,6 +94,16 @@ local plugins = {
   {
     "christoomey/vim-tmux-navigator",
     lazy = false,
+  },
+	{
+		"tpope/vim-fugitive",
+		cmd = "Git",
+	},
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" }
   }
+
 }
 return plugins
