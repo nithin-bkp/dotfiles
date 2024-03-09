@@ -46,9 +46,10 @@ if status is-interactive
     alias gwr='git worktree remove'
     alias gl='git log'
     alias gpu='git pull upstream'
-    alias gpo='git pull origin'
+    alias gpo='git push origin'
     alias gds='git diff --staged'
     alias gd='git diff'
+    alias gcm='git commit -m'
 
     # workdir aliases
     alias cairo="cd ~/projects/wprojects/code/cairo"
