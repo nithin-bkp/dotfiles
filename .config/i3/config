@@ -40,6 +40,12 @@ for_window [title="Battery Warning"] sticky enable
 # for transparency
 # exec --no-startup-id compton
 
+# todoist, obsidian chrome, slack on startup
+exec --no-startup-id todoist
+exec --no-startup-id obsidian
+exec --no-startup-id google-chrome
+exec --no-startup-id slack
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -232,7 +238,7 @@ for_window [class="Google-chrome"] move to workspace $ws2
 for_window [class="Postman"] move to workspace $ws3
 for_window [class="Slack"] move to workspace $ws4
 for_window [class="Spotify"] move to workspace $ws6
-for_window [class="Obsidian"] move to workspace $ws7
+for_window [class="obsidian"] move to workspace $ws7
 for_window [class="Todoist"] move to workspace $ws8
 
 # The default starting mode for new panes

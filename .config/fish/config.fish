@@ -63,6 +63,10 @@ if status is-interactive
     alias kegp='ke get pods -n vsmaps'
     alias kelv='ke exec -it cairo-cairo-0 bash -n vsmaps'
     alias keln='ke exec -it cairo-vunode-0 bash -n vsmaps'
+    alias keld='ke exec -it (kegp | grep denver | awk \'{print $1}\') bash -n vsmaps'
+    alias kedl='ke logs -f (kegp | grep denver | awk \'{print $1}\') -n vsmaps'
+    alias kelch='ke exec -it chi-clickhouse-vusmart-0-0-0 bash -n vsmaps'
+    alias kelg='ke logs -f (kegp | grep nairobi | awk \'{print $1}\') -n vsmaps'
 end
 
 pyenv init - | source
