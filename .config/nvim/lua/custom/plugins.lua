@@ -9,6 +9,7 @@ local plugins = {
         "pyright",
         "mypy",
         "ruff",
+        "isort",
       }
     }
   },
@@ -65,7 +66,7 @@ local plugins = {
   },
   {
     "rcarriga/nvim-dap-ui",
-    dependencies = "mfussenegger/nvim-dap",
+    dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
@@ -113,6 +114,51 @@ local plugins = {
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
     build = function() vim.fn["mkdp#util#install"]() end,
-  }
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
+    }
+  },
+  {
+    "echasnovski/mini.move",
+    lazy = false,
+    version = false,
+    config = function(_, __)
+      require("mini.move").setup({
+        mappings = {
+          -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+          left = '<C-H>',
+          right = '<C-L>',
+          down = '<C-J>',
+          up = '<C-K>',
+
+          -- Move current line in Normal mode
+          line_left = '<C-H>',
+          line_right = '<C-L>',
+          line_down = '<C-J>',
+          line_up = '<C-K>',
+        }
+      })
+    end,
+  },
 }
 return plugins

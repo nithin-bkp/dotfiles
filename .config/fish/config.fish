@@ -24,6 +24,13 @@ if status is-interactive
       end
     end
 
+    function remove_path
+      if set -l index (contains -i "$argv" $fish_user_paths)
+        set -e fish_user_paths[$index]
+        echo "Removed $argv from the path"
+      end
+    end
+
     # dotfile aliases
     alias fc='nvim ~/.config/fish/config.fish'
     alias alc='nvim ~/.config/alacritty/alacritty.toml'
@@ -36,6 +43,8 @@ if status is-interactive
     alias sshc='nvim ~/.ssh/config'
 
     # Git Aliases
+    alias g='git'
+    alias gb='git branch'
     alias gs='git status'
     alias grs='git restore --staged'
     alias gco='git checkout'
@@ -53,8 +62,13 @@ if status is-interactive
 
     # workdir aliases
     alias cairo="cd ~/projects/wprojects/code/cairo"
+    alias f8c="flake8 --exclude pluto,lib,vu_auth_provider,venv,muscat --per-file-ignores="map/daq/daemon/daq_daemon.py:F821" --count  --show-source --statistics --max-line-length=90 --ignore=F401,F841,W503,W605,E501,F811,F405,E203,E266,E265,E402"
+    alias f8d="flake8 . --count --ignore=E203,E722,W503 --statistics  --max-line-length=90  --exclude=common/airflow,pipeline/modules/operation_modules/period_detection_module.py"
+    alias denver="cd ~/projects/wprojects/code/denver"
     alias rosario="cd ~/projects/wprojects/code/rosario/notification/"
+    alias rooney="cd ~/projects/wprojects/code/rosario/rooney/"
     alias wp="cd ~/projects/wprojects/"
+    alias tools="cd ~/projects/wprojects/tools/"
     alias pp="cd ~/projects/pprojects"
     alias vsmaps="cd ~/projects/wprojects/vsmaps/"
 
@@ -65,8 +79,11 @@ if status is-interactive
     alias keln='ke exec -it cairo-vunode-0 bash -n vsmaps'
     alias keld='ke exec -it (kegp | grep denver | awk \'{print $1}\') bash -n vsmaps'
     alias kedl='ke logs -f (kegp | grep denver | awk \'{print $1}\') -n vsmaps'
-    alias kelch='ke exec -it chi-clickhouse-vusmart-0-0-0 bash -n vsmaps'
+    alias kelch='ke exec -it chi-clickhouse-vusmart-0-0-0 -n vsmaps -- bash'
     alias kelg='ke logs -f (kegp | grep nairobi | awk \'{print $1}\') -n vsmaps'
+    alias cbkp='make clean && make build/linux/amd64/clickhouse-backup build/linux/arm64/clickhouse-backup && ke cp build/linux/amd64/clickhouse-backup chi-clickhouse-vusmart-0-0-0:/usr/local/bin/clickhouse-backup -n vsmaps'
+
+    alias full='xrandr --output HDMI-1 --auto --same-as eDP-1'
 end
 
 pyenv init - | source

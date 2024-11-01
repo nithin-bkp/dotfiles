@@ -21,6 +21,7 @@ lspconfig.gopls.setup {
   single_file_support = true,
   settings = {
     gopls = {
+      gofumpt = true,
       completeUnimported = true,
       usePlaceholders = true,
       staticcheck = true,
@@ -29,4 +30,10 @@ lspconfig.gopls.setup {
       },
     },
   },
+}
+
+lspconfig.zls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = {"zig"}
 }

@@ -4,6 +4,7 @@ M.dap = {
   plugin = true,
   n = {
     ["<leader>db"] = {"<cmd> DapToggleBreakpoint <CR>", "Add breakpoint at line"},
+    ["<leader>dc"] = {"<cmd> DapContinue <CR>", "Continue/Play debugging"},
     ["<leader>dus"] = {
       function ()
         local widgets = require('dap.ui.widgets');
@@ -60,8 +61,8 @@ M.gopher = {
 M.general = {
   n = {
     ["<C-h>"] = { "<cmd> TmuxNavigateLeft<CR>", "window left"},
-    ["<C-i>"] = { "<cmd> cnext<CR>", "next item in the quick fix list"},
-    ["<C-m>"] = { "<cmd> cprev<CR>", "prev item in the quick fix list"},
+    ["<C-y>"] = { "<cmd> cprev<CR>", "next item in the quick fix list"},
+    ["<C-p>"] = { "<cmd> cnext<CR>", "prev item in the quick fix list"},
     ["<C-j>"] = { "<cmd> TmuxNavigateDown<CR>", "window down"},
     ["<C-k>"] = { "<cmd> TmuxNavigateUp<CR>", "window up"},
     ["<C-l>"] = { "<cmd> TmuxNavigateRight<CR>", "window right"},
@@ -155,6 +156,17 @@ M.harpoon = {
         harpoon:list():select(7)
       end
     }
+  }
+}
+
+M.trouble = {
+  n = {
+    ["<leader>xx"] = { function() require("trouble").toggle() end },
+    ["<leader>xw"] = { function() require("trouble").toggle("workspace_diagnostics") end },
+    ["<leader>xd"] = { function() require("trouble").toggle("document_diagnostics") end },
+    ["<leader>xq"] = { function() require("trouble").toggle("quickfix") end },
+    ["<leader>xl"] = { function() require("trouble").toggle("loclist") end },
+    ["gR"]  = {function() require("trouble").toggle("lsp_references") end }
   }
 }
 

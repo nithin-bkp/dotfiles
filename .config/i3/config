@@ -40,11 +40,12 @@ for_window [title="Battery Warning"] sticky enable
 # for transparency
 # exec --no-startup-id compton
 
-# todoist, obsidian chrome, slack on startup
+# todoist, obsidian brave, slack on startup
 exec --no-startup-id todoist
 exec --no-startup-id obsidian
-exec --no-startup-id google-chrome
+exec --no-startup-id brave-browser
 exec --no-startup-id slack
+exec --no-startup-id spotify
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -234,7 +235,7 @@ bar {
 }
 
 # Auto assign workspace for apps
-for_window [class="Google-chrome"] move to workspace $ws2
+for_window [class="Brave-browser"] move to workspace $ws2
 for_window [class="Postman"] move to workspace $ws3
 for_window [class="Slack"] move to workspace $ws4
 for_window [class="Spotify"] move to workspace $ws6
