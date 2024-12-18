@@ -13,20 +13,27 @@ local plugins = {
       }
     }
   },
-  {
-    "nvim-tree/nvim-tree.lua",
-    config = {
-      view = {
-        side = "right"
-      },
-    },
-  },
+  -- {
+  --   "nvim-tree/nvim-tree.lua",
+  --   config = {
+  --     view = {
+  --       side = "right"
+  --     },
+  --   },
+  -- },
   {
     "neovim/nvim-lspconfig",
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
     end,
+  },
+  {
+    "rust-lang/rust.vim",
+    ft = "rust",
+    init = function ()
+      vim.g.rustfmt_autosave = 1
+    end
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
@@ -160,5 +167,16 @@ local plugins = {
       })
     end,
   },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    lazy = false,
+    dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    config = function (_, opts)
+      require("oil").setup({
+        default_file_explorer = true,
+      })
+    end,
+  }
 }
 return plugins

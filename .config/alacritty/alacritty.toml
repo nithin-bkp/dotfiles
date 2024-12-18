@@ -6,7 +6,7 @@ program = "/usr/bin/fish"
 
 [font]
 normal = {family = "Hack Nerd Font Mono", style = "Regular" }
-size = 7
+size = 6.5
 
 [colors.primary]
 background = "#000000"

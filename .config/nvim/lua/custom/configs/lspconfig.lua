@@ -12,7 +12,7 @@ lspconfig.pyright.setup({
   filetypes = {"python"}
 })
 
-lspconfig.gopls.setup {
+lspconfig.gopls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = {"gopls"},
@@ -30,10 +30,24 @@ lspconfig.gopls.setup {
       },
     },
   },
-}
+})
 
-lspconfig.zls.setup {
+lspconfig.zls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = {"zig"}
-}
+})
+
+lspconfig.rust_analyzer.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = {"rust"},
+  root_dir = util.root_pattern("Cargo.toml"),
+  settings = {
+    ['rust-analyzer'] = {
+      cargo = {
+        allFeatures = true,
+      }
+    },
+  },
+})

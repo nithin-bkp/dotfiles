@@ -67,7 +67,7 @@ M.general = {
     ["<C-k>"] = { "<cmd> TmuxNavigateUp<CR>", "window up"},
     ["<C-l>"] = { "<cmd> TmuxNavigateRight<CR>", "window right"},
     ["<leader><leader>"] = { "<cmd> Telescope buffers<CR>", "Telescope Buffers"},
-    ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "NvimTree Toggle"},
+    ["<leader>e"] = { "<cmd> Oil <CR>", "Open OIl in parent directory"},
   }
 }
 
