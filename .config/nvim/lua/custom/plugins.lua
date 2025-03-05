@@ -51,10 +51,14 @@ local plugins = {
   {
     "leoluz/nvim-dap-go",
     ft = "go",
-    dependencies = "mfussenegger/nvim-dap",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
+    },
     config = function (_, opts)
       require("dap-go").setup(opts)
       require("core.utils").load_mappings("dap")
+      require("custom.configs.dap_config").search_project_config()
     end
   },
   {
@@ -176,6 +180,14 @@ local plugins = {
       require("oil").setup({
         default_file_explorer = true,
       })
+    end,
+  },
+  {
+    'github/copilot.vim',
+    enabled = true,
+    opts = {},
+    lazy = false,
+    config = function (_, opts)
     end,
   }
 }
