@@ -20,22 +20,6 @@ if status is-interactive
     ke delete -f $argv[1] -n vsmaps
   end
 
-  function pv -d "Manage pyenv virtualenv envs"
-    if [ "$argv[1]" = "create" ]
-      pyenv virtualenv 3.11.4 $argv[2]
-    else if [ "$argv[1]" = "delete" ]
-      pyenv virtualenv-delete $argv[2]
-    else if [ "$argv[1]" = "list" ]
-      pyenv virtualenvs
-    else if [ "$argv[1]" = "act" ]
-      pyenv activate $argv[2]
-    else if [ "$argv[1]" = "dact" ]
-      pyenv deactivate
-    else
-      echo invalid command $argv[1] not known
-    end
-  end
-
   function remove_path
     if set -l index (contains -i "$argv" $fish_user_paths)
       set -e fish_user_paths[$index]
@@ -105,5 +89,3 @@ if status is-interactive
 
   alias full='xrandr --output HDMI-1 --auto --same-as eDP-1'
 end
-
-pyenv init - | source
