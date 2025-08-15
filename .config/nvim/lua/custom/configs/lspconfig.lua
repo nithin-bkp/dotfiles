@@ -51,3 +51,16 @@ lspconfig.rust_analyzer.setup({
     },
   },
 })
+
+lspconfig.clangd.setup({
+  on_attach = function(client, bufnr)
+    client.server_capabilities.signatureHelpProvider = false
+    on_attach(client, bufnr)
+  end,
+  capabilities = capabilities,
+  filetypes = {"c", "cpp", "objc", "objcpp"},
+  root_dir = util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+  single_file_support = true,
+})
+
+require("flutter-tools").setup {}

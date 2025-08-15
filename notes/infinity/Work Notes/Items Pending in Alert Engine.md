@@ -1,0 +1,5 @@
+- `current` works on UTC time zone.  Consider the default time zone and calculate time range this.
+- Don't forget to change the stale alert duration.
+- `AutoRemediation` channel must be written
+- Test All Channels with preferences and groups
+- Implement  and Test `Jira`, `Report`, `ServiceNow` Channels

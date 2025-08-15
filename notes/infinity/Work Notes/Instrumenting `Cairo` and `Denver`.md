@@ -159,7 +159,7 @@ SETTINGS index_granularity = 8192, ttl_only_drop_parts = 1;
 ```sql
 CREATE TABLE vusmart.__internal_api_spans ON CLUSTER vusmart
 AS vusmart.__internal_api_spans_data
-ENGINE = Distributed('vusmart', 'vusmart', '__internal_apm_spans_data', rand());
+ENGINE = Distributed('vusmart', 'vusmart', '__internal_api_spans_data', rand());
 ```
 
 ### `MV` for `Replicated` to  `Distributed` 
@@ -215,3 +215,57 @@ SELECT
     ServiceName AS application_name
 FROM vusmart.__internal_api_raw_spans;
 ```
+
+## OTEL config
+
+```yaml
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+exporters:
+  debug:
+    verbosity: detailed
+    sampling_initial: 5
+    sampling_thereafter: 200
+  clickhouse:
+    endpoint: tcp://clickhouse:9000?dial_timeout=10s&compress=lz4
+    database: vusmart
+    username: vusmart
+    password: Vunet#7814
+    async_insert: true
+    ttl: 72h
+    compress: lz4
+    create_schema: false
+    traces_table_name: __internal_apm_span
+    timeout: 5s
+    metrics_tables:
+      gauge:
+        name: "otel_metrics_gauge"
+      sum:
+        name: "otel_metrics_sum"
+      summary:
+        name: "otel_metrics_summary"
+      histogram:
+        name: "otel_metrics_histogram"
+      exponential_histogram:
+        name: "otel_metrics_exp_histogram"
+    retry_on_failure:
+      enabled: true
+      initial_interval: 5s
+      max_interval: 30s
+      max_elapsed_time: 300s
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [debug]
+    metrics:
+      receivers: [otlp]
+      exporters: [clickhouse,debug]
+```
+

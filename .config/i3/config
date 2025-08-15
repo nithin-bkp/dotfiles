@@ -24,7 +24,7 @@ font pango:Hack Nerd Font Mono 9
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # redshift is to have night light with i3
 exec --no-startup-id redshift -l 13:77.583333
@@ -43,7 +43,7 @@ for_window [title="Battery Warning"] sticky enable
 # todoist, obsidian brave, slack on startup
 exec --no-startup-id todoist
 exec --no-startup-id obsidian
-exec --no-startup-id brave-browser
+exec --no-startup-id zen
 exec --no-startup-id slack
 exec --no-startup-id spotify
 
@@ -123,7 +123,7 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1:  Editor"
-set $ws2 "2:  Chrome"
+set $ws2 "2:  Browser"
 set $ws3 "3:  Logs"
 set $ws4 "4:  Miscellaneous"
 set $ws5 "5:  P-Proj"
@@ -235,7 +235,7 @@ bar {
 }
 
 # Auto assign workspace for apps
-for_window [class="Brave-browser"] move to workspace $ws2
+for_window [class="zen"] move to workspace $ws2
 for_window [class="Postman"] move to workspace $ws3
 for_window [class="Slack"] move to workspace $ws4
 for_window [class="Spotify"] move to workspace $ws6

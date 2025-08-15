@@ -10,6 +10,8 @@ local plugins = {
         "mypy",
         "ruff",
         "isort",
+        "clangd",
+        "clang-format",
       }
     }
   },
@@ -37,6 +39,7 @@ local plugins = {
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
+    event = "VeryLazy",
     ft = {"python", "go"},
     opts = function()
       return require "custom.configs.null-ls"
@@ -129,6 +132,7 @@ local plugins = {
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = "Trouble"
   },
   {
     "kdheepak/lazygit.nvim",
@@ -189,6 +193,35 @@ local plugins = {
     lazy = false,
     config = function (_, opts)
     end,
-  }
+  },
+  {
+    "oskarrrrrrr/symbols.nvim",
+    enabled = true,
+    lazy = false,
+    config = function()
+      local r = require("symbols.recipes")
+      require("symbols").setup(
+        r.DefaultFilters,
+        r.AsciiSymbols,
+        {
+          sidebar = {
+            -- custom settings here
+            -- e.g. hide_cursor = false
+            open_direction = "try-right",
+          }
+        }
+      )
+      vim.keymap.set("n", "<leader>s", "<cmd>Symbols<CR>")
+      vim.keymap.set("n", "<leader>S", "<cmd>SymbolsClose<CR>")
+    end
+  },
+  {
+    'nvim-flutter/flutter-tools.nvim',
+    lazy = false,
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+    },
+    config = true,
+}
 }
 return plugins

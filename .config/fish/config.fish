@@ -79,6 +79,7 @@ if status is-interactive
   alias kelch='ke exec -it chi-clickhouse-vusmart-0-0-0 -n vsmaps -- bash'
   alias kelg='ke logs -f (kegp | grep nairobi | awk \'{print $1}\') -n vsmaps'
   alias cbkp='make clean && make build/linux/amd64/clickhouse-backup build/linux/arm64/clickhouse-backup && ke cp build/linux/amd64/clickhouse-backup chi-clickhouse-vusmart-0-0-0:/usr/local/bin/clickhouse-backup -n vsmaps'
+  alias nodes='ke get nodes -o wide -n vsmaps'
 
   # Docker aliases
   alias dimg='docker images'
